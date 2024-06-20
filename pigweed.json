@@ -5,7 +5,7 @@
       "upload_local_results": true,
       "programs": {
         "default": [
-          ["build", "//..."],
+          ["build", "--config=presubmit"],
           ["test", "//..."]
         ]
       }

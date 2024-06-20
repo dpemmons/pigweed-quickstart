@@ -22,6 +22,12 @@ common --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 # Required for new toolchain resolution API.
 build --incompatible_enable_cc_toolchain_resolution
 
+# Default targets to build when running:
+# bazel build --config=presubmit
+build:presubmit -- \
+  //... \
+  //src:echo.elf
+
 # Use the remote cache. This will only work for users who have permission to access it.
 common:remote_cache --remote_cache=grpcs://remotebuildexecution.googleapis.com
 common:remote_cache --google_default_credentials=true
