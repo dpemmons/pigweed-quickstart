@@ -27,3 +27,11 @@ common:remote_cache --remote_cache=grpcs://remotebuildexecution.googleapis.com
 common:remote_cache --google_default_credentials=true
 common:remote_cache --remote_instance_name=projects/pigweed-rbe-open/instances/default-instance
 common:remote_cache --remote_upload_local_results=false
+
+# User bazelrc file; see
+# https://bazel.build/configure/best-practices#bazelrc-file
+#
+# Note: this should be at the bottom of the file, so that user-specified
+# options override anything in this file
+# (https://bazel.build/run/bazelrc#imports)
+try-import %workspace%/user.bazelrc
