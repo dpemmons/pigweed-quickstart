@@ -18,6 +18,7 @@ def _stm32_transition_impl(settings, attr):
     _ignore = attr
     return {
         "//command_line_option:platforms": "//targets:stm32",
+        "@pigweed//pw_boot:backend": "@pigweed//pw_boot_cortex_m",
     }
 
 _stm32_transition = transition(
@@ -25,6 +26,7 @@ _stm32_transition = transition(
     inputs = [],
     outputs = [
         "//command_line_option:platforms",
+        "@pigweed//pw_boot:backend",
     ],
 )
 
