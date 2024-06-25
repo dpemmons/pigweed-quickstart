@@ -19,6 +19,8 @@ def _stm32_transition_impl(settings, attr):
     return {
         "//command_line_option:platforms": "//targets:stm32",
         "@pigweed//pw_boot:backend": "@pigweed//pw_boot_cortex_m",
+        "@pigweed//pw_log:backend": "@pigweed//pw_log_basic",
+        "@pigweed//pw_log:backend_impl": "@pigweed//pw_log_basic:impl",
     }
 
 _stm32_transition = transition(
@@ -27,6 +29,8 @@ _stm32_transition = transition(
     outputs = [
         "//command_line_option:platforms",
         "@pigweed//pw_boot:backend",
+        "@pigweed//pw_log:backend",
+        "@pigweed//pw_log:backend_impl",
     ],
 )
 
