@@ -29,6 +29,8 @@ cc_binary(
     }),
     deps = [
         "@pigweed//pw_assert:backend_impl",
+        "@pigweed//pw_assert:check_backend_impl",
+        "@pigweed//pw_assert:assert_backend_impl",
         "@pigweed//pw_boot",
         "@pigweed//pw_sys_io",
     ] + select({
