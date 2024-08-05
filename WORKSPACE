@@ -140,4 +140,24 @@ pip_parse(
 
 load("@pypi//:requirements.bzl", "install_deps")
 
+# For same70
+http_archive(
+    name = "cmsis",
+    build_file_content = """
+cc_library(
+  name = "core",
+  includes = [ "CMSIS/Core/Include", ],
+  hdrs = [
+    "CMSIS/Core/Include/cmsis_version.h",
+    "CMSIS/Core/Include/cmsis_compiler.h",
+    "CMSIS/Core/Include/cmsis_gcc.h",
+    "CMSIS/Core/Include/mpu_armv7.h",
+    "CMSIS/Core/Include/core_cm4.h", ],
+  visibility = ["//visibility:public"]
+)
+    """,
+    strip_prefix = "CMSIS_5-develop",
+    url = "https://github.com/ARM-software/CMSIS_5/archive/refs/heads/develop.zip",
+)
+
 install_deps()

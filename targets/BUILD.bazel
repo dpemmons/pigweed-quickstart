@@ -24,3 +24,14 @@ platform(
         "@pw_toolchain//constraints/arm_mcpu:cortex-m4+nofp",
     ],
 )
+
+## look at https://github.com/google-deepmind/barkour_robot/blob/e7c0f6fa5c164347b39a9a8c3ba36bab60312c9b/actuator/firmware/targets/m7/BUILD.bazel#L67
+platform(
+    name = "atsam_s7x",
+    constraint_values = [
+        # For toolchain resolution.
+        "@platforms//cpu:armv7e-m",
+        "@platforms//os:none",
+        "@pw_toolchain//constraints/arm_mcpu:cortex-m7",
+    ],
+)

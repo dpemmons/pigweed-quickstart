@@ -11,8 +11,11 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under
 # the License.
-load("//:echo.bzl", "stm32_cc_binary")
-
+load(
+    "//:echo.bzl",
+    "stm32_cc_binary",
+    "atsam_s7x_cc_binary"
+)
 load(
     "@pigweed//pw_build:pigweed.bzl",
     "pw_cc_test",
@@ -48,10 +51,35 @@ stm32_cc_binary(
     binary = ":echo",
 )
 
+cc_binary(
+    name = "blinky",
+    srcs = ["blinky.cc"],
+    malloc = select({
+        "@platforms//cpu:armv7e-m": "@pigweed//pw_malloc",
+        "//conditions:default": "@bazel_tools//tools/cpp:malloc",
+    }),
+    deps = [
+        "//targets/same70/Microchip.SAME70_DFP.4.11.257:same70n20b_deps",
+    ] + select({
+        "@platforms//cpu:armv7e-m": [
+            "//targets/same70/atsame70q20b:linker_script",
+            "//targets/same70/atsame70q20b:pre_init",
+            # Resolves dependencies to lib nano (_write, _read, etc) with stubs.
+            "@pigweed//pw_toolchain/arm_gcc:arm_none_eabi_gcc_support",
+        ],
+        "//conditions:default": [],
+    }),
+)
+
+atsam_s7x_cc_binary(
+    name = "blinky.elf",
+    binary = ":blinky",
+)
+
 cc_library(
     name = "multiply",
-    hdrs = ["multiply.h"],
     srcs = ["multiply.cc"],
+    hdrs = ["multiply.h"],
 )
 
 # Note: Must use pw_cc_test instead of cc_test to enable on-device execution.
