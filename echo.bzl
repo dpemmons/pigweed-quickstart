@@ -73,8 +73,9 @@ def _atsam_s7x_transition_impl(settings, attr):
         "@pigweed//pw_assert:backend_impl": "@pigweed//pw_assert_basic:impl",
         "@pigweed//pw_assert:check_backend": "@pigweed//pw_assert_basic",
         "@pigweed//pw_assert:check_backend_impl": "@pigweed//pw_assert_basic:impl",
-        "@pigweed//pw_log:backend": "@pigweed//pw_log_basic",
-        "@pigweed//pw_log:backend_impl": "@pigweed//pw_log_basic:impl",
+        # "@pigweed//pw_log:backend": "@pigweed//pw_log_basic",
+        "@pigweed//pw_log:backend": "@pigweed//pw_log_null",
+        # "@pigweed//pw_log:backend_impl": "@pigweed//pw_log_basic:impl",
         # "@pigweed//pw_sys_io:backend": "@pigweed//pw_sys_io_baremetal_stm32f429",
     }
 
@@ -89,7 +90,7 @@ _atsam_s7x_transition = transition(
         "@pigweed//pw_assert:check_backend",
         "@pigweed//pw_assert:check_backend_impl",
         "@pigweed//pw_log:backend",
-        "@pigweed//pw_log:backend_impl",
+        # "@pigweed//pw_log:backend_impl",
         # "@pigweed//pw_sys_io:backend",
     ],
 )

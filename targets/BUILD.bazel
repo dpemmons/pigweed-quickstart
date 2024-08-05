@@ -29,6 +29,8 @@ platform(
 platform(
     name = "atsam_s7x",
     constraint_values = [
+        "@pigweed//pw_malloc_freelist:backend",
+
         # For toolchain resolution.
         "@platforms//cpu:armv7e-m",
         "@platforms//os:none",
