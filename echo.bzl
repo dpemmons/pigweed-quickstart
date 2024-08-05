@@ -69,12 +69,12 @@ def _atsam_s7x_transition_impl(settings, attr):
     return {
         "//command_line_option:platforms": "//targets:atsam_s7x",
         "@pigweed//pw_boot:backend": "@pigweed//pw_boot_cortex_m",
-        # "@pigweed//pw_assert:backend": "@pigweed//pw_assert_basic",
-        # "@pigweed//pw_assert:backend_impl": "@pigweed//pw_assert_basic:impl",
-        # "@pigweed//pw_assert:check_backend": "@pigweed//pw_assert_basic",
-        # "@pigweed//pw_assert:check_backend_impl": "@pigweed//pw_assert_basic:impl",
-        # "@pigweed//pw_log:backend": "@pigweed//pw_log_basic",
-        # "@pigweed//pw_log:backend_impl": "@pigweed//pw_log_basic:impl",
+        "@pigweed//pw_assert:backend": "@pigweed//pw_assert_basic",
+        "@pigweed//pw_assert:backend_impl": "@pigweed//pw_assert_basic:impl",
+        "@pigweed//pw_assert:check_backend": "@pigweed//pw_assert_basic",
+        "@pigweed//pw_assert:check_backend_impl": "@pigweed//pw_assert_basic:impl",
+        "@pigweed//pw_log:backend": "@pigweed//pw_log_basic",
+        "@pigweed//pw_log:backend_impl": "@pigweed//pw_log_basic:impl",
         # "@pigweed//pw_sys_io:backend": "@pigweed//pw_sys_io_baremetal_stm32f429",
     }
 
@@ -84,12 +84,12 @@ _atsam_s7x_transition = transition(
     outputs = [
         "//command_line_option:platforms",
         "@pigweed//pw_boot:backend",
-        # "@pigweed//pw_assert:backend",
-        # "@pigweed//pw_assert:backend_impl",
-        # "@pigweed//pw_assert:check_backend",
-        # "@pigweed//pw_assert:check_backend_impl",
-        # "@pigweed//pw_log:backend",
-        # "@pigweed//pw_log:backend_impl",
+        "@pigweed//pw_assert:backend",
+        "@pigweed//pw_assert:backend_impl",
+        "@pigweed//pw_assert:check_backend",
+        "@pigweed//pw_assert:check_backend_impl",
+        "@pigweed//pw_log:backend",
+        "@pigweed//pw_log:backend_impl",
         # "@pigweed//pw_sys_io:backend",
     ],
 )
