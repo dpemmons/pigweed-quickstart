@@ -1,0 +1,15 @@
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+  name = "same70n20b_deps",
+  deps = [ "@cmsis//:core", ],
+  includes = [ "same70b/include", ],
+  hdrs = glob(["same70b/include/*.h"]) +
+         glob(["same70b/include/component/*.h"]) +
+         glob(["same70b/include/instance/*.h"]) +
+         glob(["same70b/include/pio/*.h"]),
+  srcs = [ "same70b/gcc/gcc/startup_same70n20b.c" ],
+  alwayslink = 1,
+)
+
+exports_files(["same70b/gcc/gcc/same70n20b_flash.ld"])

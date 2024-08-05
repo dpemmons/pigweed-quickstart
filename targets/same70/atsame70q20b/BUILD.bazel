@@ -1,0 +1,17 @@
+load(
+    "@pigweed//pw_build:pigweed.bzl",
+    "pw_linker_script",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+pw_linker_script(
+    name = "linker_script",
+    linker_script = "//targets/same70/Microchip.SAME70_DFP.4.11.257:same70b/gcc/gcc/same70n20b_flash.ld",
+)
+
+cc_library(
+    name = "pre_init",
+    deps = ["//targets/same70/Microchip.SAME70_DFP.4.11.257:same70n20b_deps"],
+    alwayslink = 1,
+)
