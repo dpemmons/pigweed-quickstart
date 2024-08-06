@@ -1,7 +1,8 @@
 # Pigweed: minimal Bazel example
 
-This repository contains a minimal example of a Bazel-based Pigweed project.
-It's an echo application for the STM32F429 Discovery Board.
+This repository clones a minimal example of a Bazel-based Pigweed project.
+
+It's an attempt to use pigweed with an Atmel SAM E70. **It doesn't work yet.**
 
 ## Cloning
 
