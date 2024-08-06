@@ -147,12 +147,7 @@ http_archive(
 cc_library(
   name = "core",
   includes = [ "CMSIS/Core/Include", ],
-  hdrs = [
-    "CMSIS/Core/Include/cmsis_version.h",
-    "CMSIS/Core/Include/cmsis_compiler.h",
-    "CMSIS/Core/Include/cmsis_gcc.h",
-    "CMSIS/Core/Include/mpu_armv7.h",
-    "CMSIS/Core/Include/core_cm4.h", ],
+  hdrs = glob(["CMSIS/Core/Include/*.h"]),
   visibility = ["//visibility:public"]
 )
     """,

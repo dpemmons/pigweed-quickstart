@@ -9,6 +9,9 @@ cc_library(
          glob(["same70b/include/instance/*.h"]) +
          glob(["same70b/include/pio/*.h"]),
   srcs = [ "same70b/gcc/gcc/startup_same70n20b.c" ],
+  defines = [
+    "DONT_USE_PREDEFINED_CORE_HANDLERS=1"
+  ],
   alwayslink = 1,
 )
 

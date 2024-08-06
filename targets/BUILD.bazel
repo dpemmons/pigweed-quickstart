@@ -29,8 +29,10 @@ platform(
 platform(
     name = "atsam_s7x",
     constraint_values = [
-        "@pigweed//pw_malloc_freelist:backend",
-
+        # TODO(dpemmons) which allocator do we want?
+        # "@pigweed//pw_malloc_freelist:backend",
+        "@pigweed//pw_malloc:bucket_block_allocator_backend",
+        
         # For toolchain resolution.
         "@platforms//cpu:armv7e-m",
         "@platforms//os:none",
