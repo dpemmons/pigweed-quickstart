@@ -15,3 +15,6 @@ cc_library(
     deps = ["//targets/same70/Microchip.SAME70_DFP.4.11.257:same70n20b_deps"],
     alwayslink = 1,
 )
+
+# Allow other packages to use this configuration file.
+exports_files(["openocd_atsame70q20b.cfg"])

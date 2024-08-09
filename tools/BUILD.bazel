@@ -16,12 +16,26 @@ load("@rules_python//python:defs.bzl", "py_binary")
 package(default_visibility = ["//visibility:public"])
 
 py_binary(
-    name = "flash",
-    srcs = ["flash.py"],
+    name = "flash_echo",
+    srcs = ["flash_echo.py"],
     data = [
         "//src:echo.elf",
         "@openocd//:bin/openocd",
         "@pigweed//targets/stm32f429i_disc1/py/stm32f429i_disc1_utils:openocd_stm32f4xx.cfg",
+    ],
+    deps = [
+        "@pypi_pyserial//:pkg",
+        "@rules_python//python/runfiles",
+    ],
+)
+
+py_binary(
+    name = "flash_blinky",
+    srcs = ["flash_blinky.py"],
+    data = [
+        "//src:blinky.elf",
+        "@openocd//:bin/openocd",
+        "//targets/same70/atsame70q20b:openocd_atsame70q20b.cfg",
     ],
     deps = [
         "@pypi_pyserial//:pkg",

@@ -22,24 +22,11 @@ import subprocess
 from rules_python.python.runfiles import runfiles
 from serial.tools import list_ports
 
-_BINARY_PATH = "__main__/src/echo.elf"
+_BINARY_PATH = "__main__/src/blinky.elf"
 _OPENOCD_PATH = "openocd/bin/openocd"
-_OPENOCD_CONFIG_PATH = "pigweed/targets/stm32f429i_disc1/py/stm32f429i_disc1_utils/openocd_stm32f4xx.cfg"
+_OPENOCD_CONFIG_PATH = "__main__/targets/same70/atsame70q20b/openocd_atsame70q20b.cfg"
 
-# Vendor ID and model ID for the STM32 Discovery Board.
-_ST_VENDOR_ID = 0x0483
-_DISCOVERY_MODEL_ID = 0x374B
-
-
-def get_board_serial() -> str:
-  for dev in list_ports.comports():
-    if dev.vid == _ST_VENDOR_ID and dev.pid == _DISCOVERY_MODEL_ID:
-      return dev.serial_number
-
-  raise IOError("Failed to detect connected board")
-
-
-def flash(board_serial):
+def flash():
   r = runfiles.Create()
   openocd = r.Rlocation(_OPENOCD_PATH)
   binary = r.Rlocation(_BINARY_PATH)
@@ -54,8 +41,8 @@ def flash(board_serial):
 
   # Variables referred to by the OpenOCD config.
   env = {
-      "PW_STLINK_SERIAL": board_serial,
-      "PW_GDB_PORT": "disabled",
+      # "PW_STLINK_SERIAL": board_serial,
+      # "PW_GDB_PORT": "disabled",
   }
 
   subprocess.check_call(
@@ -69,6 +56,18 @@ def flash(board_serial):
       env=env,
   )
 
+  ## here's what's used by west:
+  # openocd \
+  # -s /home/dpemmons/zephyr-quickstart/third_party/zephyr/boards/duet3d/duet3_mb6hc/support 
+  # -s /home/dpemmons/opt/zephyr-sdk-0.16.8/sysroots/x86_64-pokysdk-linux/usr/share/openocd/scripts 
+  # -f /home/dpemmons/zephyr-quickstart/third_party/zephyr/boards/duet3d/duet3_mb6hc/support/openocd.cfg 
+  # '-c init' 
+  # '-c targets' 
+  # -c 'reset init' 
+  # -c 'flash write_image erase /home/dpemmons/zephyr-quickstart/build/zephyr/zephyr.hex' 
+  # -c 'atsamv gpnvm set 1' 
+  # -c 'reset run' 
+  # -c shutdown
 
 if __name__ == "__main__":
-  flash(get_board_serial())
+  flash()

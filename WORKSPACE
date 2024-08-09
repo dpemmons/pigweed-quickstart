@@ -83,18 +83,18 @@ rules_fuzzing_init()
 git_repository(
     name = "pigweed",
     # ROLL: Warning: this entry is automatically updated.
-    # ROLL: Last updated 2024-08-04.
-    # ROLL: By https://cr-buildbucket.appspot.com/build/8740497548058710849.
-    commit = "38133403fcbccb0f920246d23a4c89a5477cda0d",
+    # ROLL: Last updated 2024-08-06.
+    # ROLL: By https://cr-buildbucket.appspot.com/build/8740398242156414753.
+    commit = "d75af95f4e045d8a6aff84fb1082349501783973",
     remote = "https://pigweed.googlesource.com/pigweed/pigweed.git",
 )
 
 git_repository(
     name = "pw_toolchain",
     # ROLL: Warning: this entry is automatically updated.
-    # ROLL: Last updated 2024-08-04.
-    # ROLL: By https://cr-buildbucket.appspot.com/build/8740497548058710849.
-    commit = "38133403fcbccb0f920246d23a4c89a5477cda0d",
+    # ROLL: Last updated 2024-08-06.
+    # ROLL: By https://cr-buildbucket.appspot.com/build/8740398242156414753.
+    commit = "d75af95f4e045d8a6aff84fb1082349501783973",
     remote = "https://pigweed.googlesource.com/pigweed/pigweed.git",
     strip_prefix = "pw_toolchain_bazel",
 )
@@ -140,8 +140,7 @@ pip_parse(
 
 load("@pypi//:requirements.bzl", "install_deps")
 
-# For same70
-http_archive(
+git_repository(
     name = "cmsis",
     build_file_content = """
 cc_library(
@@ -151,8 +150,9 @@ cc_library(
   visibility = ["//visibility:public"]
 )
     """,
-    strip_prefix = "CMSIS_5-develop",
-    url = "https://github.com/ARM-software/CMSIS_5/archive/refs/heads/develop.zip",
+    # strip_prefix = "CMSIS_5-develop",
+    commit = "4a819a09ccadacc3bad2def1d5121f137fc330fb",
+    remote = "https://github.com/ARM-software/CMSIS_5"
 )
 
 install_deps()
